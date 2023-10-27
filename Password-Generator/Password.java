@@ -6,6 +6,8 @@ public class Password{
         int randomNum = 0;
         String PasswordString = "";
         String PasswordNum = "";
+         String password = generatePassword();
+        System.out.println("Your password is " + password);
 
         do{
             randomAlpha=(int)(Math.random()*alpha.length);
@@ -13,7 +15,21 @@ public class Password{
             randomNum=(int)(Math.random()*number.length);
             PasswordNum+=String.valueOf(number[randomNum]);
         }while(PasswordString.length()!=4);
-
+          public static String generatePassword() {
+        String alpha = generateRandomString(1, "abcdefghijklmnopqrstuvwxyz");
+        String num = generateRandomString(3, "0123456789");
+        String password = alpha.substring(0, 1).toUpperCase() + alpha.substring(1) + "@" + num;
+        return password;
+          }
+        public static String generateRandomString(int length, String characters) {
+        StringBuilder randomString = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int randomIndex = (int) (Math.random() * characters.length());
+            randomString.append(characters.charAt(randomIndex));
+        }
+        return randomString.toString();
+    }
+}
         String finalPassword = PasswordString.substring(0,1).toUpperCase()+PasswordString.substring(1)+"@"+PasswordNum;
          System.out.println("Your password is "+finalPassword);
     }
